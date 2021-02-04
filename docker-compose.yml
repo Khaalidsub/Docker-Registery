@@ -1,15 +1,17 @@
-version: "3.3"
+version: "3.7"
 services:
   nginx:
     image: nginx-registry
     container_name: nginx-registry
     build:
-      context: ./nginx
-      dockerfile: ./Dockerfile
+      context: nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
     depends_on:
       - registry
   registry:
-    image: registry
+    image: registry:2
     container_name: registry
     ports:
       - "6666:5000"
