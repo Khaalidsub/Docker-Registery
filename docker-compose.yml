@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  nginx:
+    image: nginx-registry
+    container_name: nginx-registry
+    build:
+      context: ./nginx
+      dockerfile: ./Dockerfile
+    depends_on:
+      - registry
+  registry:
+    image: registry
+    container_name: registry
+    ports:
+      - "6666:5000"
+    restart: always
