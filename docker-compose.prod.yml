@@ -2,12 +2,13 @@ version: "3.7"
 services:
   nginx:
     image: "sleepinglotus/nginx-registry"
+    volumes:
+      - ./production.conf:/etc/nginx/nginx.conf
+      - ~/etc/letsencrypt:/etc/letsencrypt
     container_name: nginx-registry
-    build:
-      context: nginx
-      dockerfile: Dockerfile
     ports:
       - "80:80"
+      - "443:443"
     depends_on:
       - registry
   registry:
